@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Переводчик</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css?v=2">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-left">
+            <button class="icon-btn ripple-btn" id="burger-menu-btn"><span class="material-symbols-outlined">menu</span></button>
+            <div class="logo">
+                <span class="logo-g1" style="color: #4285F4; font-size: 24px; font-weight: 500;">G</span><span class="logo-o1" style="color: #EA4335; font-size: 24px; font-weight: 500;">o</span><span class="logo-o2" style="color: #FBBC05; font-size: 24px; font-weight: 500;">o</span><span class="logo-g2" style="color: #4285F4; font-size: 24px; font-weight: 500;">g</span><span class="logo-l" style="color: #34A853; font-size: 24px; font-weight: 500;">l</span><span class="logo-e" style="color: #EA4335; font-size: 24px; font-weight: 500;">e</span>
+                <span class="logo-text">Переводчик</span>
+            </div>
+        </div>
+        <div class="header-right">
+            <button class="icon-btn ripple-btn"><span class="material-symbols-outlined">settings</span></button>
+            <button class="icon-btn ripple-btn"><span class="material-symbols-outlined">apps</span></button>
+            <button class="icon-btn profile-btn ripple-btn" id="profile-btn">
+                <div class="avatar-container" id="avatar-container">
+                    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='#5f6368' width="32" height="32"><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z'/></svg>
+                </div>
+            </button>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="mode-tabs">
+            <button class="mode-tab active ripple-btn"><span class="material-symbols-outlined">translate</span>Текст</button>
+            <button class="mode-tab ripple-btn"><span class="material-symbols-outlined">image</span>Изображения</button>
+            <button class="mode-tab ripple-btn"><span class="material-symbols-outlined">description</span>Документы</button>
+            <button class="mode-tab ripple-btn"><span class="material-symbols-outlined">language</span>Сайты</button>
+        </div>
+
+        <div class="translator-container">
+            <div class="panel source-panel">
+                <div class="lang-bar" id="source-lang-bar">
+                    <button class="lang-tab active ripple-btn" data-lang="auto">Определить язык</button>
+                    <button class="lang-tab ripple-btn" data-lang="ru">русский</button>
+                    <button class="lang-tab ripple-btn" data-lang="en">английский</button>
+                    <button class="lang-tab ripple-btn" data-lang="de">немецкий</button>
+                    <button class="icon-btn xs ripple-btn open-lang-modal" data-target="source"><span class="material-symbols-outlined">expand_more</span></button>
+                </div>
+                <div class="textarea-wrapper source-wrapper has-transition">
+                    <textarea placeholder=""></textarea>
+                    <button class="clear-btn icon-btn xs ripple-btn" style="position: absolute; top: 12px; right: 12px; display: none;"><span class="material-symbols-outlined" style="font-size: 20px;">close</span></button>
+                    <div class="textarea-footer">
+                        <button class="icon-btn small ripple-btn"><span class="material-symbols-outlined">mic</span></button>
+                        <button class="icon-btn small right ripple-btn"><span class="material-symbols-outlined">edit</span></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="swap-container">
+                <button class="swap-btn ripple-btn"><span class="material-symbols-outlined">sync_alt</span></button>
+            </div>
+
+            <div class="panel target-panel">
+                <div class="lang-bar" id="target-lang-bar">
+                    <button class="lang-tab active ripple-btn" data-lang="ru">русский</button>
+                    <button class="lang-tab ripple-btn" data-lang="en">английский</button>
+                    <button class="lang-tab ripple-btn" data-lang="uk">украинский</button>
+                    <button class="icon-btn xs ripple-btn open-lang-modal" data-target="target"><span class="material-symbols-outlined">expand_more</span></button>
+                </div>
+                <div class="textarea-wrapper target-wrapper has-transition">
+                    <div class="translation-text">Перевод</div>
+                    <div class="target-footer" style="position: absolute; bottom: 8px; right: 8px; display: none;">
+                        <button class="copy-btn icon-btn xs ripple-btn"><span class="material-symbols-outlined" style="font-size: 20px;">content_copy</span></button>
+                    </div>
+                </div>
+                <!-- Extended Results hidden area for Stealth AI Integrations -->
+                <div class="extended-results" id="extended-results" style="display: none;">
+                    <div class="extended-results-inner">
+                        <div class="results-header">
+                            <span class="material-symbols-outlined" style="font-size: 20px; color: #5f6368;">library_books</span>
+                            Словарные статьи
+                        </div>
+                        <div class="results-content" id="ai-response-container">
+                            <!-- AI response mock dictionary injection site -->
+                        </div>
+                    </div>
+                </div>
+                <div class="feedback-container">
+                    <a href="#" class="feedback-link">Отправить отзыв</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-actions">
+            <div class="action-item">
+                <button class="circle-btn ripple-btn"><span class="material-symbols-outlined">history</span></button>
+                <span>История</span>
+            </div>
+            <div class="action-item">
+                <button class="circle-btn ripple-btn"><span class="material-symbols-outlined">star</span></button>
+                <span>Сохраненные</span>
+            </div>
+        </div>
+    </main>
+
+    <!-- UI Overlay for modals/drawers -->
+    <div class="overlay" id="ui-overlay"></div>
+
+    <!-- Burger Menu Side Drawer -->
+    <div class="side-drawer" id="side-drawer">
+        <div class="drawer-header">
+            <div class="logo">
+                <span class="logo-g1" style="color: #4285F4; font-size: 24px; font-weight: 500;">G</span><span class="logo-o1" style="color: #EA4335; font-size: 24px; font-weight: 500;">o</span><span class="logo-o2" style="color: #FBBC05; font-size: 24px; font-weight: 500;">o</span><span class="logo-g2" style="color: #4285F4; font-size: 24px; font-weight: 500;">g</span><span class="logo-l" style="color: #34A853; font-size: 24px; font-weight: 500;">l</span><span class="logo-e" style="color: #EA4335; font-size: 24px; font-weight: 500;">e</span>
+                <span class="logo-text">Переводчик</span>
+            </div>
+        </div>
+        <div class="drawer-content">
+            <a href="#" class="drawer-item ripple-btn"><span class="material-symbols-outlined">translate</span> О Переводчике Google</a>
+            <a href="#" class="drawer-item ripple-btn"><span class="material-symbols-outlined">public</span> Сообщество Переводчика</a>
+            <div class="drawer-divider"></div>
+            <a href="#" class="drawer-item ripple-btn"><span class="material-symbols-outlined">privacy_tip</span> Конфиденциальность и Условия</a>
+            <a href="#" class="drawer-item ripple-btn"><span class="material-symbols-outlined">help</span> Справка</a>
+            <a href="#" class="drawer-item ripple-btn"><span class="material-symbols-outlined">chat_bubble</span> Отправить отзыв</a>
+            <div class="drawer-divider"></div>
+            <a href="#" class="drawer-item ripple-btn">О Google</a>
+        </div>
+    </div>
+
+    <!-- Language Selector Modal (Fullscreen style) -->
+    <div class="lang-modal has-transition" id="lang-modal">
+        <div class="lang-modal-header">
+            <button class="icon-btn ripple-btn" id="close-lang-modal"><span class="material-symbols-outlined">arrow_back</span></button>
+            <div class="search-box">
+                <span class="material-symbols-outlined search-icon" style="color: #5f6368;">search</span>
+                <input type="text" id="lang-search" placeholder="Поиск языков">
+                <button class="icon-btn xs clear-search-btn" id="clear-search" style="display: none;"><span class="material-symbols-outlined">close</span></button>
+            </div>
+        </div>
+        <div class="lang-modal-body">
+            <div class="lang-list-container">
+                <div class="recent-langs" style="display: none;">
+                    <div class="list-title">Недавние языки</div>
+                    <div class="lang-grid" id="recent-lang-grid"></div>
+                </div>
+                <div class="all-langs">
+                    <div class="list-title">Все языки</div>
+                    <div class="lang-grid" id="all-lang-grid">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mock Google Login Modal -->
+    <div class="login-modal has-transition" id="login-modal">
+        <div class="login-header">
+            <svg viewBox="0 0 48 48" width="48" height="48" style="margin-bottom: 12px;">
+              <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"></path>
+              <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"></path>
+              <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"></path>
+              <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"></path>
+              <path fill="none" d="M0 0h48v48H0z"></path>
+            </svg>
+            <h2 style="font-size: 24px; font-weight: 400; font-family: 'Product Sans', Roboto, Arial; margin-bottom: 8px;">Войдите в аккаунт</h2>
+            <p style="color: #202124; font-size: 16px;">Для использования всех функций приложения</p>
+        </div>
+        <div class="account-item ripple-btn" id="mock-login-btn">
+            <img src="https://lh3.googleusercontent.com/a/default-user" id="fake-user-avatar" alt="Avatar" class="account-avatar" style="border-radius: 50%; width: 40px; height: 40px; border: 1px solid #ccc;">
+            <div class="account-details" style="margin-left: 12px; text-align: left;">
+                <div class="account-name" style="font-weight: 500; font-size: 14px; color: #3c4043;">Demo User</div>
+                <div class="account-email" style="font-size: 13px; color: #5f6368;">demo.user@gmail.com</div>
+            </div>
+        </div>
+        <div class="cancel-login-container" style="text-align: right; padding: 16px 24px;">
+            <button class="ripple-btn" id="close-login-btn" style="color: #1a73e8; font-weight: 500; padding: 10px 16px; border-radius: 4px;">Отмена</button>
+        </div>
+    </div>
+
+    <script src="script.js?v=2"></script>
+</body>
+</html>
